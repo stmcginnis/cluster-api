@@ -141,7 +141,7 @@ func (d *dockerRuntime) GetHostPort(ctx context.Context, containerName, portAndP
 		}
 	}
 
-	return "", fmt.Errorf("no host port found for load balancer %q", containerName)
+	return "", fmt.Errorf("no host port found for %q", containerName)
 }
 
 // ExecContainer executes a command in a running container and writes any output to the provided writer.
@@ -400,7 +400,7 @@ func (d *dockerRuntime) RunContainer(ctx context.Context, runConfig *RunContaine
 		}
 	}
 
-	// mount /dev/mapper if docker storage driver if Btrfs or ZFS
+	// mount /dev/mapper if docker storage driver is Btrfs or ZFS
 	// https://github.com/kubernetes-sigs/kind/pull/1464
 	needed, err := d.needsDevMapper(ctx)
 	if err != nil {
